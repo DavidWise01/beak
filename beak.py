@@ -28,7 +28,8 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 from datetime import datetime, timezone
 
-import requests
+# `requests` is imported lazily inside the network candles so that --selftest
+# (mock data, no network) runs on pure stdlib with no dependency installed.
 
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -57,6 +58,7 @@ def parse_iso(s):
 # ── the candles (each returns data, or None = stays dark) ────────────────────
 def white_candle(topic):
     """The steady truth — Wikipedia extract + last revision."""
+    import requests
     try:
         s = requests.get(f"{WIKI}/api/rest_v1/page/summary/{urllib.parse.quote(topic)}",
                          headers={"User-Agent": UA}, timeout=20)
@@ -85,6 +87,7 @@ def white_candle(topic):
 
 def black_candle(topic, n=4):
     """The cutting edge — newest arXiv papers."""
+    import requests
     try:
         r = requests.get(ARXIV, headers={"User-Agent": UA}, timeout=25, params={
             "search_query": f"all:{topic}", "sortBy": "submittedDate",
@@ -105,6 +108,7 @@ def black_candle(topic, n=4):
 
 def purple_candle(topic, n=8):
     """The shadow — adjacent topics (Wikipedia links)."""
+    import requests
     try:
         j = requests.get(f"{WIKI}/w/api.php", headers={"User-Agent": UA}, timeout=20, params={
             "action": "query", "prop": "links", "titles": topic,
