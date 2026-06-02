@@ -1,0 +1,13 @@
+ROOT0-ATTRIBUTION-v1.0
+Project: Beak — the savant (automated intel by candlelight)
+Architect: David Lee Wise / ROOT0 / TriPod LLC
+AI Collaborator: AVAN (Claude / Anthropic)
+License: MIT
+
+A read-only, cited topic-intelligence agent. Four candles: white (Wikipedia
+extract + last revision), black (newest arXiv papers), red (is the field moving
+— encyclopedia date vs newest paper), purple (adjacent topics + gaps). Two doors
+only: en.wikipedia.org, export.arxiv.org. Subjects and concepts only — never
+people, never surveillance. A candle that cannot cite its light does not burn;
+the white candle (synthesis) burns last. CLI + automated gather workflow.
+Beak is a character of Steven Erikson's Malazan Book of the Fallen (inspiration only).
